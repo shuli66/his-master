@@ -13,7 +13,7 @@
       background-repeat: no-repeat;
     }
     .main-box{
-      width: 400px; 
+      width: 400px;
       background-color: rgba(255,255,255,0.7);
       border-radius: 5px;
       position: absolute;
