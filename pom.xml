@@ -14,7 +14,21 @@
             <version>4.0.1</version>
             <scope>provided</scope>
         </dependency>
+
+
+            <!-- 其他依赖项... -->
+
+            <!-- 添加 MySQL JDBC 驱动程序依赖项 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.26</version>
+        </dependency>
+
+
     </dependencies>
+
+
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
