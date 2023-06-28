@@ -17,16 +17,17 @@
 
 
             <!-- 其他依赖项... -->
+        <!-- 添加 MySQL JDBC 驱动程序依赖项 -->
+<!--            <dependency>-->
+<!--                <groupId>mysql</groupId>-->
+<!--                <artifactId>mysql-connector-java</artifactId>-->
+<!--                <version>5.1.46</version>-->
+<!--            </dependency>-->
 
-            <!-- 添加 MySQL JDBC 驱动程序依赖项 -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.26</version>
-        </dependency>
+        </dependencies>
 
 
-    </dependencies>
+
 
 
 

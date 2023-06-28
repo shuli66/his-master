@@ -67,59 +67,72 @@
 <script>
   $("#code").blur(function() {
     var code = $(this).val().trim();
-    if ("" == code) {
-      $(this).parent().addClass("has-error");
-      $(this).parent().removeClass("has-success");
-      $("#icon").addClass("glyphicon-remove");
-      $("#icon").removeClass("glyphicon-ok");
-    }else{
-      $(this).parent().addClass("has-success");
-      $(this).parent().removeClass("has-error");
-      $("#icon").removeClass("glyphicon-remove");
-      $("#icon").addClass("glyphicon-ok");
+    var parentElement = $(this).parent();
+    var iconElement = $("#icon");
+
+    if (code === "") {
+      parentElement.addClass("has-error");
+      parentElement.removeClass("has-success");
+      iconElement.addClass("glyphicon-remove");
+      iconElement.removeClass("glyphicon-ok");
+    } else {
+      parentElement.addClass("has-success");
+      parentElement.removeClass("has-error");
+      iconElement.removeClass("glyphicon-remove");
+      iconElement.addClass("glyphicon-ok");
     }
-    $(this).val(code);
   });
+
   $("#pwd").blur(function(){
     var pwd = $(this).val().trim();
-    if ("" == pwd) {
-      $(this).parent().addClass("has-error");
-      $(this).parent().removeClass("has-success");
-      $("#icon2").addClass("glyphicon-remove");
-      $("#icon2").removeClass("glyphicon-ok");
-    }else{
-      $(this).parent().addClass("has-success");
-      $(this).parent().removeClass("has-error");
-      $("#icon2").removeClass("glyphicon-remove");
-      $("#icon2").addClass("glyphicon-ok");
+    var parentElement = $(this).parent();
+    var iconElement = $("#icon2");
+
+    if (pwd === "") {
+      parentElement.addClass("has-error");
+      parentElement.removeClass("has-success");
+      iconElement.addClass("glyphicon-remove");
+      iconElement.removeClass("glyphicon-ok");
+    } else {
+      parentElement.addClass("has-success");
+      parentElement.removeClass("has-error");
+      iconElement.removeClass("glyphicon-remove");
+      iconElement.addClass("glyphicon-ok");
     }
-    $(this).val(pwd);
   });
+
   var a = false;
+
   $("#btn-eye").click(function() {
+    var iconChildren = $(this).children();
+    var pwdInput = $("#pwd");
+
     if (a) {
-      $(this).children().addClass("glyphicon-eye-close");
-      $(this).children().removeClass("glyphicon-eye-open");
-      $("#pwd").attr("type", "password");
+      iconChildren.addClass("glyphicon-eye-close");
+      iconChildren.removeClass("glyphicon-eye-open");
+      pwdInput.attr("type", "password");
       a = false;
     } else {
-      $(this).children().addClass("glyphicon-eye-open");
-      $(this).children().removeClass("glyphicon-eye-close");
-      $("#pwd").attr("type", "text");
+      iconChildren.addClass("glyphicon-eye-open");
+      iconChildren.removeClass("glyphicon-eye-close");
+      pwdInput.attr("type", "text");
       a = true;
     }
   });
+
   $("#login_btn").click(function () {
-    var code = $("#code").val();
-    var pwd = $("#pwd").val();
-    if (code == "" || pwd == "") {
+    var code = $("#code").val().trim();
+    var pwd = $("#pwd").val().trim();
+
+    if (code === "" || pwd === "") {
       return false;
     }
+
     $.post("login_check", {
-      username: code,
+      realname: code,
       password: pwd
     }, function (data) {
-      if (data === "true") { // 登录成功
+      if (data.trim() === "true") { // 登录成功
         alert("登录成功");
         window.location.href = "zhenduan.html?id=" + data.id;
       } else { // 登录失败
@@ -127,6 +140,7 @@
       }
     });
   });
+
 
 </script>
 </body>
