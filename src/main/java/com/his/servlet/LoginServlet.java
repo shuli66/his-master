@@ -1,5 +1,7 @@
 package com.his.servlet;
 
+import com.his.mapper.EmployeeMapper;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,13 +12,20 @@ import java.io.IOException;
 @WebServlet("/login_check")
 public class LoginServlet extends HttpServlet {
 
+    private EmployeeMapper employeeMapper;
+
+    @Override
+    public void init() throws ServletException {
+        employeeMapper = new EmployeeMapper();
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 获取用户名和密码
-        String username = request.getParameter("username");
+        String realname = request.getParameter("realname");
         String password = request.getParameter("password");
 
         // 进行登录验证
-        boolean loginSuccessful = validateLogin(username, password);
+        boolean loginSuccessful = employeeMapper.login(realname, password);
 
         if (loginSuccessful) {
             // 登录成功
@@ -26,17 +35,5 @@ public class LoginServlet extends HttpServlet {
             // 登录失败
             response.getWriter().write("false"); // 返回登录失败的标记
         }
-    }
-
-    private boolean validateLogin(String username, String password) {
-        // 假设有一个预定义的用户名和密码用于验证
-        String validUsername = "admin";
-        String validPassword = "123";
-
-        // 在这里进行实际的登录验证
-        // 可以连接数据库，检查用户名和密码是否匹配
-        // 返回true表示验证通过，返回false表示验证失败
-        // 这里只是一个示例，实际情况需要根据具体需求进行编写
-        return username.equals(validUsername) && password.equals(validPassword);
     }
 }

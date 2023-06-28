@@ -1,4 +1,4 @@
-package com.his.dao;
+package com.his.beam;
 
 public class Employee {
     private int id;
