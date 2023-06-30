@@ -58,9 +58,11 @@
     </div>
     <div class="form-group">
       <div class="text-center col-sm-12">
-        <a href="register.html" id="register_btn" type="button" class="btn btn-primary">注册</a>
+        <a href="register.jsp" id="register_btn" type="button" class="btn btn-primary">注册</a>
         <button id="login_btn" type="button" class="btn btn-success">登录</button>
       </div>
+
+
     </div>
   </form>
 </div>
@@ -129,12 +131,14 @@
     }
 
     $.post("login_check", {
+      code:0,
       realname: code,
       password: pwd
     }, function (data) {
       if (data.trim() === "true") { // 登录成功
         alert("登录成功");
-        window.location.href = "zhenduan.html?id=" + data.id;
+        window.location.href = "index.jsp";
+        // window.location.href = "register.jsp?id=" + data.id;
       } else { // 登录失败
         alert("登录失败");
       }
