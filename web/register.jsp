@@ -194,7 +194,7 @@
     var scheduling_id = $("#scheduling_id").val();
 
     $.post("login_check", {
-      code:1,
+      code:2,
       realname: realname,
       deptment_id: deptment_id,
       password: password,

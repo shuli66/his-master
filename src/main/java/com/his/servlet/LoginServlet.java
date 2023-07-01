@@ -15,25 +15,32 @@ import java.io.PrintWriter;
 public class LoginServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+
         String code = request.getParameter("code");
-        if (code.equals("0")){//登录
+        EmployeeMapper mapper = new EmployeeMapper();
+        if (code.equals("1")){//登录
             // 获取用户名和密码
             String realname = request.getParameter("realname");
             String password = request.getParameter("password");
             // 进行登录验证
-            boolean loginSuccessful = EmployeeMapper.login(realname, password);
+            Employee sessionEmployee = mapper.login(realname,password);
 
             PrintWriter out = response.getWriter();
-            if (loginSuccessful) {
+            if (sessionEmployee!=null) {
                 // 登录成功
                 out.print("true");
+                request.getSession().setAttribute("sessionEmployee",sessionEmployee);
             } else {
                 // 登录失败
                 out.print("false");
             }
         }
 
-        if(code.equals("1")){//注册
+        if(code.equals("2")){//注册
             String name = request.getParameter("realname");
 
             String pwd = request.getParameter("password");

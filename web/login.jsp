@@ -131,7 +131,7 @@
     }
 
     $.post("login_check", {
-      code:0,
+      code:1,
       realname: code,
       password: pwd
     }, function (data) {
