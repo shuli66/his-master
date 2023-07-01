@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <title>H+ 后台主题UI框架 - 主页</title>
+    <title>HIS医院信息管理系统-主页</title>
 
     <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
     <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
@@ -65,7 +65,7 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="html/index_v1.html.bak" data-index="0">医生信息</a>
+                            <a class="J_menuItem" href="html/userList.jsp" data-index="0">医生信息</a>
                         </li>
                         <li>
                             <a class="J_menuItem" href="html/index_v2.html">主页示例二</a>
@@ -389,7 +389,7 @@
             </button>
             <nav class="page-tabs J_menuTabs">
                 <div class="page-tabs-content">
-                    <a href="javascript:;" class="active J_menuTab" data-id="index_v1.html">首页</a>
+                    <a href="javascript:;" class="active J_menuTab" data-id="html/basic_gallery.html">首页</a>
                 </div>
             </nav>
             <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
@@ -414,7 +414,7 @@
 
 <%--            内容显示区域--%>
             <iframe class="J_iframe" name="iframe0" width="100%" height="100%"
-                    src="html/index_v2.html?v=4.0" frameborder="0" data-id="index_v2.html" seamless>
+                    src="html/basic_gallery.html?v=4.0" frameborder="0" data-id="html/basic_gallery.html" seamless>
 
             </iframe>
         </div>
