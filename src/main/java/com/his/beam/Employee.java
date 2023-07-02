@@ -4,25 +4,28 @@ public class Employee {
     private int id;
     private String realname;
     private String password;
-    private int departmentId;
-    private int registLevelId;
-    private int schedulingId;
-    private boolean delmark;
+    private int deptment_id;
+    private int regist_level_id;
+    private int scheduling_id;
+    private int delmark;
 
     // 省略构造方法、getter和setter方法
-    public Employee(){}
+    public Employee() {
+    }
+
     // 构造方法
-    public Employee(int id, String realname, String password, int departmentId, int registLevelId, int schedulingId, boolean delmark) {
+    public Employee(int id, String realname, String password, int deptment_id, int regist_level_id, int scheduling_id, int delmark) {
         this.id = id;
         this.realname = realname;
         this.password = password;
-        this.departmentId = departmentId;
-        this.registLevelId = registLevelId;
-        this.schedulingId = schedulingId;
+        this.deptment_id = deptment_id;
+        this.regist_level_id = regist_level_id;
+        this.scheduling_id = scheduling_id;
         this.delmark = delmark;
     }
 
     // Getter和Setter方法
+
 
     public int getId() {
         return id;
@@ -48,35 +51,35 @@ public class Employee {
         this.password = password;
     }
 
-    public int getDepartmentId() {
-        return departmentId;
+    public int getDeptment_id() {
+        return deptment_id;
     }
 
-    public void setDepartmentId(int departmentId) {
-        this.departmentId = departmentId;
+    public void setDeptment_id(int deptment_id) {
+        this.deptment_id = deptment_id;
     }
 
-    public int getRegistLevelId() {
-        return registLevelId;
+    public int getRegist_level_id() {
+        return regist_level_id;
     }
 
-    public void setRegistLevelId(int registLevelId) {
-        this.registLevelId = registLevelId;
+    public void setRegist_level_id(int regist_level_id) {
+        this.regist_level_id = regist_level_id;
     }
 
-    public int getSchedulingId() {
-        return schedulingId;
+    public int getScheduling_id() {
+        return scheduling_id;
     }
 
-    public void setSchedulingId(int schedulingId) {
-        this.schedulingId = schedulingId;
+    public void setScheduling_id(int scheduling_id) {
+        this.scheduling_id = scheduling_id;
     }
 
-    public boolean isDelmark() {
+    public int getDelmark() {
         return delmark;
     }
 
-    public void setDelmark(boolean delmark) {
+    public void setDelmark(int delmark) {
         this.delmark = delmark;
     }
 
@@ -86,9 +89,9 @@ public class Employee {
                 "id=" + id +
                 ", realname='" + realname + '\'' +
                 ", password='" + password + '\'' +
-                ", departmentId=" + departmentId +
-                ", registLevelId=" + registLevelId +
-                ", schedulingId=" + schedulingId +
+                ", deptment_id=" + deptment_id +
+                ", regist_level_id=" + regist_level_id +
+                ", scheduling_id=" + scheduling_id +
                 ", delmark=" + delmark +
                 '}';
     }

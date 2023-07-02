@@ -2,6 +2,7 @@ package com.his.util;
 
 import com.his.dao.BaseDao;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -57,6 +58,7 @@ public class CRUDUtil {
             return list;
         } else {
             Object object = clazz.newInstance();
+
             while (rs.next()) {
                 for (int i = 1; i < columnCount; i++) {
                     String columnName = metaData.getColumnName(i);

@@ -65,7 +65,7 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="html/userList.jsp" data-index="0">医生信息</a>
+                            <a class="J_menuItem" href="login_check?code=3" data-index="0">医生信息</a>
                         </li>
                         <li>
                             <a class="J_menuItem" href="html/index_v2.html">主页示例二</a>

@@ -27,7 +27,7 @@
 <body>
 <div class="main-box">
   <h2 class="text-center">医疗管理系统</h2>
-  <!--  ctrl + k 格式化代码 -->
+
   <form class="form-horizontal" id="login" action="login_check">
     <div class="form-group">
       <label for="code" class="col-sm-2 control-label">账号</label>
