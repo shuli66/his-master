@@ -12,14 +12,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeMapper {
-    public  Employee login(String realname, String password) {
+    public  EmployeeDto login(String realname, String password) {
+        String sql = "SELECT e.id, e.realname, e.password, e.deptment_id, e.regist_level_id, e.scheduling_id, d.dept_name, r.regist_name, s.rule_name " +
+                "FROM employee e " +
+                "LEFT JOIN department d ON e.deptment_id = d.id " +
+                "LEFT JOIN regist_level r ON e.regist_level_id = r.id " +
+                "LEFT JOIN scheduling s ON e.scheduling_id = s.id " +
+                "WHERE realname=? AND password=?";
 
-        String sql = "SELECT * FROM employee WHERE realname=? AND password=?";
-            List<Object> list = new ArrayList<Object>();
+        List<Object> list = new ArrayList<Object>();
             list.add(realname);
             list.add(password);
-        Employee employee = (Employee) CRUDUtil.CRUD(sql, Employee.class, list);
-        return employee; // 返回注册结果
+        EmployeeDto employee = (EmployeeDto) CRUDUtil.CRUD(sql, EmployeeDto.class, list,true);
+        return employee; //
 
         }
 
@@ -30,8 +35,7 @@ public class EmployeeMapper {
         boolean registrationSuccessful = false;
 
         try {
-            BaseDao baseDao = BaseDao.getDBUtil();
-            conn = baseDao.getConn();
+            conn = BaseDao.getConnection();
             String sql = "INSERT INTO employee(realname, password, deptment_id, regist_level_id, scheduling_id) VALUES (?, ?, ?, ?, ?)";
             pstmt = conn.prepareStatement(sql);
 
@@ -41,7 +45,7 @@ public class EmployeeMapper {
             pstmt.setInt(4, employee.getRegist_level_id());
             pstmt.setInt(5, employee.getScheduling_id());
 
-            System.out.println("执行的SQL语句：" + pstmt.toString());
+            System.out.println("执行的SQL语句：" + pstmt);
 
             int rowsAffected = pstmt.executeUpdate();
 
@@ -71,14 +75,34 @@ public class EmployeeMapper {
 
     //查询所有医生信息
     public  List<EmployeeDto> selectAll() {
-        String sql = "SELECT e.id, e.realname, e.password, e.deptment_id, e.regist_level_id, e.scheduling_id, d.dept_name, r.regist_name, s.rule_name\n" +
+        String sql = "SELECT e.id, e.realname, e.deptment_id, e.regist_level_id, e.scheduling_id, d.dept_name, r.regist_name, s.rule_name\n" +
                 " FROM employee e " +
                 " LEFT JOIN department d ON e.deptment_id = d.id " +
                 " LEFT JOIN regist_level r ON e.regist_level_id = r.id " +
                 " LEFT JOIN scheduling s ON e.scheduling_id = s.id; ";
-        List<EmployeeDto> list = (List<EmployeeDto>)CRUDUtil.CRUD(sql, EmployeeDto.class, null);
+        List<EmployeeDto> list = (List<EmployeeDto>)CRUDUtil.CRUD(sql, EmployeeDto.class, null,true);
         return list;
 
+    }
+
+
+    public static boolean delUser(String id) throws SQLException {
+
+        int num = 0;
+        String sql = "DELETE FROM employee WHERE id= ?";
+
+        BaseDao.getConnection();
+        try {
+            PreparedStatement pstmt = BaseDao.connection.prepareStatement(sql);
+            pstmt.setObject(1, id);
+
+            num = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //如果num大于0删除成功，num=0 删除失败
+        return num>0;
     }
 
 

@@ -1,17 +1,16 @@
 package com.his.dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class BaseDao {
     private static final String USER = "root";
     private static final String PWD = "123456";
     private static final String URL = "jdbc:mysql://localhost:3306/his?useSSL=false&serverTimezone=UTC";
-    protected static Connection connection;
-    private static Connection con;
+    public static Connection connection = null;
 
-    private static BaseDao utils = null;
-
-    private BaseDao() {
+    static {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -19,37 +18,21 @@ public class BaseDao {
         }
     }
 
-    public synchronized static BaseDao getDBUtil() {
-        if (utils == null) {
-            utils = new BaseDao();
+    public static Connection getConnection() throws SQLException {
+        if (connection == null || connection.isClosed()) {
+            connection = DriverManager.getConnection(URL, USER, PWD);
         }
-        return utils;
+        return connection;
     }
 
-    public synchronized Connection getConn() throws SQLException {
-        if (con == null || con.isClosed()) {
-            con = DriverManager.getConnection(URL, USER, PWD);
-        }
-        return con;
-    }
-
-    public Statement getStatement() throws SQLException {
-        Connection conn = getConn();
-        return conn.createStatement();
-    }
-
-    public PreparedStatement getPstmt(String sql) throws SQLException {
-        Connection conn = getConn();
-        return conn.prepareStatement(sql);
-    }
-
-    public void closeConnection() {
-        if (con != null) {
+    public static void closeConnection(Connection conn) {
+        if (conn != null) {
             try {
-                con.close();
+                conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
     }
+
 }

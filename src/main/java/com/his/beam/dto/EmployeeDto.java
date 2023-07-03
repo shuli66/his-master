@@ -3,8 +3,7 @@ package com.his.beam.dto;
 import com.his.beam.Employee;
 
 public class EmployeeDto extends Employee {
-    private int id;
-    private String realname;
+
     //科室
     private String dept_name;
     //挂号级别名称

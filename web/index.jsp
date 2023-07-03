@@ -23,6 +23,13 @@
     <link href="html/css/style.min.css?v=4.0.0" rel="stylesheet">
 </head>
 
+<%
+    HttpSession session1 = request.getSession();
+    if (session1.getAttribute("sessionEmployee")==null){
+        response.sendRedirect("login.jsp");
+    }
+%>
+
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
 <div id="wrapper">
     <!--左侧导航开始-->
@@ -37,20 +44,14 @@
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                <span class="block m-t-xs"><strong class="font-bold">${sessionEmployee.realname}</strong></span>
-                                <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
+                                <span class="text-muted text-xs block">${sessionEmployee.dept_name}<b class="caret"></b></span>
                                 </span>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a class="J_menuItem" href="html/form_avatar.html">修改头像</a>
-                            </li>
                             <li><a class="J_menuItem" href="html/profile.html">个人资料</a>
                             </li>
-                            <li><a class="J_menuItem" href="html/contacts.html">联系我们</a>
-                            </li>
-                            <li><a class="J_menuItem" href="html/mailbox.html">信箱</a>
-                            </li>
                             <li class="divider"></li>
-                            <li><a href="html/login.html">安全退出</a>
+                            <li><a href="login_check?code=4">安全退出</a>
                             </li>
                         </ul>
                     </div>
@@ -408,7 +409,7 @@
                     </li>
                 </ul>
             </div>
-            <a href="html/login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+            <a href="login_check?code=4" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
         </div>
         <div class="row J_mainContent" id="content-main">
 

@@ -15,6 +15,7 @@
         <td>科室</td>
         <td>职称</td>
         <td>排班</td>
+        <td>操作</td>
     </tr>
 
     <c:forEach items="${list}" var="user">
@@ -22,13 +23,28 @@
             <td>${user.id}</td>
             <td>${user.realname}</td>
             <td>${user.dept_name}</td>
-            <td>${user.regist_name}</td>
-            <td>${user.rule_name}</td>
+            <td>${user.regist_name==null?"---":user.regist_name}</td>
+            <td>${user.rule_name==null?"---":user.rule_name}</td>
+            <td>
+                <button class="btn btn-primary" onclick="editUser(${user.id})">编辑</button>
+                <button class="btn btn-danger" onclick="delUser(${user.id})" >删除</button>
+            </td>
         </tr>
     </c:forEach>
 
 
 </table>
+<script>
+    function delUser(id){
+        if (confirm("确定删除？")){
+            location.href = "login_check?code=5&id="+id;
+        }
+    }
+
+    function editUser(id) {
+
+    }
+</script>
 
 </body>
 </html>

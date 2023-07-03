@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/login_check")
@@ -23,7 +24,7 @@ public class LoginServlet extends HttpServlet {
 
         String code = request.getParameter("code");
         if (code != null && code.contains("?")) {
-            code = code.substring(0,1);
+            code = code.substring(0, 1);
         }
 
         EmployeeMapper mapper = new EmployeeMapper();
@@ -33,25 +34,25 @@ public class LoginServlet extends HttpServlet {
         //code==3 查询所以医生信息
 
 
-        if (code.equals("1")){//登录
+        if (code.equals("1")) {//登录
             // 获取用户名和密码
             String realname = request.getParameter("realname");
             String password = request.getParameter("password");
             // 进行登录验证
-            Employee sessionEmployee = mapper.login(realname,password);
+            EmployeeDto sessionEmployee = mapper.login(realname, password);
 
             PrintWriter out = response.getWriter();
-            if (sessionEmployee!=null) {
+            if (sessionEmployee.getId() > 0) {
                 // 登录成功
                 out.print("true");
-                request.getSession().setAttribute("sessionEmployee",sessionEmployee);
+                request.getSession().setAttribute("sessionEmployee", sessionEmployee);
             } else {
                 // 登录失败
                 out.print("false");
             }
         }
 
-        if(code.equals("2")){//注册
+        if (code.equals("2")) {//注册
             String name = request.getParameter("realname");
 
             String pwd = request.getParameter("password");
@@ -83,9 +84,6 @@ public class LoginServlet extends HttpServlet {
             }
 
 
-
-
-
             boolean registrationSuccessful = false;
 
             if (pwd.equals(pwd2)) {
@@ -106,15 +104,33 @@ public class LoginServlet extends HttpServlet {
             }
         }
 
-        if (code.equals("3")){//查询所有医生信息
+        if (code.equals("3")) {//查询所有医生信息
             List<EmployeeDto> list = mapper.selectAll();
-            request.setAttribute("list",list);
-            request.getRequestDispatcher("userList.jsp").forward(request,response);
+            request.setAttribute("list", list);
+            request.getRequestDispatcher("userList.jsp").forward(request, response);
 
 
         }
 
+        if (code.equals("4")) {//安全退出
+            request.getSession().removeAttribute("sessionEmployee");
+            response.sendRedirect("login.jsp");
 
 
+        }
+
+        if (code.equals("5")) {//删除医生信息
+            String id = request.getParameter("id");
+            try {
+                if (EmployeeMapper.delUser(id)){
+                    List<EmployeeDto> list = mapper.selectAll();
+                    request.setAttribute("list", list);
+                    request.getRequestDispatcher("userList.jsp").forward(request, response);
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
+        }
     }
 }

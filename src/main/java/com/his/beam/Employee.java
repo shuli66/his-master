@@ -1,8 +1,8 @@
 package com.his.beam;
 
 public class Employee {
-    private int id;
-    private String realname;
+    protected int id;
+    protected String realname;
     private String password;
     private int deptment_id;
     private int regist_level_id;
