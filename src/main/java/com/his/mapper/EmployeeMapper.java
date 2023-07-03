@@ -13,7 +13,7 @@ import java.util.List;
 
 public class EmployeeMapper {
     public  EmployeeDto login(String realname, String password) {
-        String sql = "SELECT e.id, e.realname, e.password, e.deptment_id, e.regist_level_id, e.scheduling_id, d.dept_name, r.regist_name, s.rule_name " +
+        String sql = "SELECT e.id, e.realname, e.deptment_id, e.regist_level_id, e.scheduling_id, d.dept_name, r.regist_name, s.rule_name " +
                 "FROM employee e " +
                 "LEFT JOIN department d ON e.deptment_id = d.id " +
                 "LEFT JOIN regist_level r ON e.regist_level_id = r.id " +
