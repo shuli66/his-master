@@ -26,7 +26,7 @@ public class EmployeeMapper {
             list.add(realname);
             list.add(password);
         EmployeeDto employee = (EmployeeDto) CRUDUtil.CRUD(sql, EmployeeDto.class, list,true);
-        return employee; //
+        return employee;
 
         }
 

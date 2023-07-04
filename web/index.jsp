@@ -69,16 +69,13 @@
                             <a class="J_menuItem" href="login_check?code=3" data-index="0">医生信息</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="html/index_v2.html">主页示例二</a>
+                            <a class="J_menuItem" href="html/index_v2.html">科室管理</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="html/index_v3.html">主页示例三</a>
+                            <a class="J_menuItem" href="html/index_v3.html">职称管理</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="html/index_v4.html">主页示例四</a>
-                        </li>
-                        <li>
-                            <a href="html/index_v5.html" target="_blank">主页示例五</a>
+                            <a class="J_menuItem" href="html/index_v4.html">排班管理</a>
                         </li>
                     </ul>
 
@@ -87,25 +84,17 @@
                 <li>
                     <a href="#">
                         <i class="fa fa fa-bar-chart-o"></i>
-                        <span class="nav-label">挂号收费</span>
+                        <span class="nav-label">药库管理</span>
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="html/graph_echarts.html">窗口挂号</a>
+                            <a class="J_menuItem" href="drug_check?code=1">药品信息</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="html/graph_flot.html">窗口退号</a>
+                            <a class="J_menuItem" href="html/graph_flot.html">添加药品</a>
                         </li>
-                        <li>
-                            <a class="J_menuItem" href="html/graph_morris.html">收费</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="html/graph_rickshaw.html">退费</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="html/graph_peity.html">费用记录查询</a>
-                        </li>
+
                     </ul>
                 </li>
 
