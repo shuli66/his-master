@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.his.dao.BaseDao.getConnection;
+
 public class EmployeeMapper {
     public  EmployeeDto login(String realname, String password) {
         String sql = "SELECT e.id, e.realname, e.deptment_id, e.regist_level_id, e.scheduling_id, d.dept_name, r.regist_name, s.rule_name " +
@@ -35,7 +37,7 @@ public class EmployeeMapper {
         boolean registrationSuccessful = false;
 
         try {
-            conn = BaseDao.getConnection();
+            conn = getConnection();
             String sql = "INSERT INTO employee(realname, password, deptment_id, regist_level_id, scheduling_id) VALUES (?, ?, ?, ?, ?)";
             pstmt = conn.prepareStatement(sql);
 
@@ -45,7 +47,6 @@ public class EmployeeMapper {
             pstmt.setInt(4, employee.getRegist_level_id());
             pstmt.setInt(5, employee.getScheduling_id());
 
-            System.out.println("执行的SQL语句：" + pstmt);
 
             int rowsAffected = pstmt.executeUpdate();
 
@@ -85,13 +86,13 @@ public class EmployeeMapper {
 
     }
 
-
+//删除
     public static boolean delUser(String id) throws SQLException {
 
         int num = 0;
         String sql = "DELETE FROM employee WHERE id= ?";
 
-        BaseDao.getConnection();
+        getConnection();
         try {
             PreparedStatement pstmt = BaseDao.connection.prepareStatement(sql);
             pstmt.setObject(1, id);
@@ -104,6 +105,38 @@ public class EmployeeMapper {
         //如果num大于0删除成功，num=0 删除失败
         return num>0;
     }
+    public Employee updateSelectUser(String id){
+        boolean bl = false;
+        String sql = "select * from employee where id = ? ";
+        List<Object>list = new ArrayList<>();
+        list.add(id);
+        Employee employee = (Employee) CRUDUtil.CRUD(sql, Employee.class, list,true);
+        return employee;
+    }
 
+    public  boolean updateEmployee(Employee employee) {
+
+        int num = 0;
+        String sql = "update employee set realname=?,password=?,deptment_id=? ";
+        if (employee.getRegist_level_id()>0){
+            sql += ",regist_level_id=" + employee.getRegist_level_id();
+        }
+        if (employee.getScheduling_id()>0){
+            sql += ",scheduling_id=" + employee.getScheduling_id();
+        }
+        sql +=" where id="+ employee.getId();
+        try {
+            BaseDao.getConnection();
+            PreparedStatement pstmt = BaseDao.connection.prepareStatement(sql);
+
+            pstmt.setObject(1, employee.getRealname());
+            pstmt.setObject(2, employee.getPassword());
+            pstmt.setObject(3, employee.getDeptment_id());
+            num = pstmt.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return num>0;
+    }
 
 }

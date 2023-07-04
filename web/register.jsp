@@ -79,10 +79,10 @@
 							<span class="input-group-addon">
 								<i class="	glyphicon glyphicon-book"></i>
 							</span>
-<%--          <input id="code" type="text" class="in form-control" placeholder="请输入账户">--%>
           <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 
             <select  class="form-control" name="deptment_id" id="deptment_id">
+                <option value="0">----请选择----</option>
                 <option value="1">心血管内科</option>
                 <option value="2">神经内科</option>
                 <option value="3">普通内科</option>
@@ -106,9 +106,10 @@
           <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 
           <select  class="form-control" name="register_level_id" id="register_level_id">
-            <option value="1">专家号</option>
-            <option value="2">普通号</option>
-            <option value="3">主任医生号</option>
+            <option value="0">----请选择----</option>
+            <option value="1" >专家号</option>
+            <option value="2" >普通号</option>
+            <option value="3" >主任医生号</option>
           </select>
 
         </div>
@@ -122,11 +123,12 @@
 								<i class="	glyphicon glyphicon-folder-open"></i>
 							</span>
           <select id="scheduling_id" class="form-control" name="scheduling_id" >
-            <option value="1">星期一三五上午</option>
-            <option value="2">星期一三五下午</option>
-            <option value="3">星期二四六上午</option>
-            <option value="4">星期二四六下午</option>
-            <option value="5">周六周日全天</option>
+            <option value="0">----请选择----</option>
+            <option value="1" >星期一三五上午</option>
+            <option value="2" >星期一三五下午</option>
+            <option value="3" >星期二四六上午</option>
+            <option value="4" >星期二四六下午</option>
+            <option value="5" >周六周日全天</option>
           </select>
         </div>
       </div>
@@ -144,31 +146,32 @@
 </div>
 
  <script>
-<%--  $(".in").blur(function() {--%>
-<%--    var code = $(this).val().trim();--%>
-<%--    if ($(this).attr("id") == "password2") {--%>
-<%--      if (code != $("#password").val()) {--%>
-<%--        alert("两次密码不一致");--%>
-<%--        $(this).parent().addClass("has-error");--%>
-<%--        $(this).parent().removeClass("has-success");--%>
-<%--        $(this).next().addClass("glyphicon-remove");--%>
-<%--        $(this).next().removeClass("glyphicon-ok");--%>
-<%--        return false;--%>
-<%--      }--%>
-<%--    }--%>
-<%--    if ("" == code) {--%>
-<%--      $(this).parent().addClass("has-error");--%>
-<%--      $(this).parent().removeClass("has-success");--%>
-<%--      $(this).next().addClass("glyphicon-remove");--%>
-<%--      $(this).next().removeClass("glyphicon-ok");--%>
-<%--    } else {--%>
-<%--      $(this).parent().addClass("has-success");--%>
-<%--      $(this).parent().removeClass("has-error");--%>
-<%--      $(this).next().removeClass("glyphicon-remove");--%>
-<%--      $(this).next().addClass("glyphicon-ok");--%>
-<%--    }--%>
-<%--    $(this).val(code);--%>
-<%--  });--%>
+   $(".in").blur(function() {
+     var code = $(this).val().trim();
+     if ($(this).attr("id") == "password2") {
+       if (code != $("#password").val()) {
+         alert("两次密码不一致");
+         $(this).parent().addClass("has-error");
+         $(this).parent().removeClass("has-success");
+         $(this).next().addClass("glyphicon-remove");
+         $(this).next().removeClass("glyphicon-ok");
+         return false;
+       }
+     }
+     if ("" == code) {
+       $(this).parent().addClass("has-error");
+       $(this).parent().removeClass("has-success");
+       $(this).next().addClass("glyphicon-remove");
+       $(this).next().removeClass("glyphicon-ok");
+     } else {
+       $(this).parent().addClass("has-success");
+       $(this).parent().removeClass("has-error");
+       $(this).next().removeClass("glyphicon-remove");
+       $(this).next().addClass("glyphicon-ok");
+     }
+     $(this).val(code);
+   });
+
 
 <%--  var a = false;--%>
 <%--  $("#btn-eye").click(function() {--%>
@@ -185,34 +188,39 @@
 <%--    }--%>
 <%--  });--%>
 
-  $("#register_btn").click(function() {
-    var realname = $("#realname").val();
-    var password = $("#password").val();
-    var password2 = $("#password2").val();
-    var deptment_id = $("#deptment_id").val();
-    var register_level_id = $("#register_level_id").val();
-    var scheduling_id = $("#scheduling_id").val();
+$("#register_btn").click(function() {
+  var realname = $("#realname").val();
+  var password = $("#password").val();
+  var password2 = $("#password2").val();
+  var deptment_id = $("#deptment_id").val();
+  var register_level_id = $("#register_level_id").val();
+  var scheduling_id = $("#scheduling_id").val();
 
-    $.post("login_check", {
-      code:2,
-      realname: realname,
-      deptment_id: deptment_id,
-      password: password,
-      password2: password2,
-      register_level_id:register_level_id,
-      scheduling_id: scheduling_id
+  if (deptment_id === "0") {
+    alert("请选择科室！");
+    return;
+  }
 
-    }, function(data) {//服务器返回的数据
-      if (data) {
-        alert("注册成功");
-        window.location.href = "login.jsp";
-      } else {
-        alert("注册失败");
-      }
-    });
+  $.post("login_check", {
+    code: 2,
+    realname: realname,
+    deptment_id: deptment_id,
+    password: password,
+    password2: password2,
+    register_level_id: register_level_id,
+    scheduling_id: scheduling_id
+  }, function(data) {
+    if (data) {
+      alert("注册成功");
+      window.location.href = "login.jsp";
+    } else {
+      alert("注册失败");
+    }
   });
+});
 
-</script>
+
+ </script>
 
   </body>
 </html>

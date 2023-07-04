@@ -26,7 +26,7 @@
             <td>${user.regist_name==null?"---":user.regist_name}</td>
             <td>${user.rule_name==null?"---":user.rule_name}</td>
             <td>
-                <button class="btn btn-primary" onclick="editUser(${user.id})">编辑</button>
+                <button class="btn btn-primary" onclick="updateUser(${user.id})">编辑</button>
                 <button class="btn btn-danger" onclick="delUser(${user.id})" >删除</button>
             </td>
         </tr>
@@ -41,8 +41,8 @@
         }
     }
 
-    function editUser(id) {
-       
+    function updateUser(id) {
+        location.href = "login_check?code=6&id="+id;
     }
 </script>
 
