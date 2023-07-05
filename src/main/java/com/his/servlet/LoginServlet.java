@@ -37,11 +37,11 @@ public class LoginServlet extends HttpServlet {
         //code==2 注册
         //code==3 查询所以医生信息
         // 获取用户名和密码
-
+        String realname = request.getParameter("realname");
+        String password = request.getParameter("password");
 
         if (code.equals("1")) {//登录
-            String realname = request.getParameter("realname");
-            String password = request.getParameter("password");
+
             // 进行登录验证
             EmployeeDto sessionEmployee = mapper.login(realname, password);
 
@@ -79,11 +79,23 @@ public class LoginServlet extends HttpServlet {
                 employee.setScheduling_id(Integer.parseInt(scheduling_id));
             }
 
+            if (mapper.isUserName(name)){
+                response.getWriter().write("failure"); // 返回注册失败的标识数据
+                return;
+            }
+
             //在register.jsp有js请选择科室的提示
             //在register.jsp有js密码不一致的提示
             //在register.jsp有js登录消息提示
 
             if (EmployeeMapper.registerEmployee(employee)) {
+                String ref = request.getParameter("ref");
+                if ("1".equals(ref)){
+                    List<EmployeeDto> list = mapper.selectAll();
+                    request.setAttribute("list", list);
+                    request.getRequestDispatcher("userList.jsp").forward(request, response);
+                    return;
+                }
                 request.getRequestDispatcher("login.jsp").forward(request, response); // 转发到登录页面
             } else {
                 request.getRequestDispatcher("register.jsp").forward(request, response); // 转发回注册页面
@@ -165,8 +177,12 @@ public class LoginServlet extends HttpServlet {
                     //返回到修改页面
                     request.getRequestDispatcher("updateUser.jsp").forward(request,response);
                 }
+        }
 
-
+        if(code.equals("8")){//条件查询
+            List<EmployeeDto> list = mapper.likeUserName(realname);
+            request.setAttribute("list", list);
+            request.getRequestDispatcher("userList.jsp").forward(request, response);
         }
     }
 }

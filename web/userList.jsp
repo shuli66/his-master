@@ -8,6 +8,15 @@
 <body>
 <h1 style="text-align: center;color: #00a2d4;font-weight: bold;">医生信息</h1>
 
+<form action="login_check" class="form-inline"  style="width: 95%;margin: 30px auto">
+    <input type="hidden" name="code" value="8">
+    <div class="form-group">
+        <input type="text" class="form-control"  name="realname" placeholder="请输入账号">
+    </div>
+    <button type="submit" class="btn btn-success">查询</button>
+    <button type="button" class="btn btn-primary" onclick="javascript:location.href='addUser.jsp'">添加</button>
+</form>
+
 <table class="table" style="text-align: center">
     <tr style="color: #568c0a;font-weight: bold;">
         <td>序号</td>

@@ -10,7 +10,7 @@ public class DeptMapper {
     //查询所有科室信息，用于加载下拉框
     public List<Department> selectDeptAll(){
         String sql = "select * from department ";
-        List<Department> list = (List<Department>) CRUDUtil.CRUD(sql, Department.class, null,false);
+        List<Department> list = (List<Department>) CRUDUtil.CRUD(sql, Department.class, null,false,false);
         return list;
 
     }

@@ -27,7 +27,7 @@
 </head>
 <body>
 <div class="main-box">
-  <h2 class="text-center">医疗管理系统</h2>
+  <h2 class="text-center">注册账号</h2>
   <!--  ctrl + k 格式化代码 -->
   <form class="form-horizontal" id="login" action="login_check" method="post">
     <div class="form-group">

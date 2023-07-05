@@ -24,7 +24,7 @@ public class CRUDUtil extends BaseDao {
      * @param list：所带的参数
      * @return
      */
-    public static Object CRUD(String sql, Class clazz,List<Object> list,boolean isExtends){
+    public static Object CRUD(String sql, Class clazz,List<Object> list,boolean isExtends,boolean isList){
         // 动态sql语句执行对象
         PreparedStatement ps = null;
         // 返回结果
@@ -42,7 +42,7 @@ public class CRUDUtil extends BaseDao {
             }
             // 获取查询到的结果集
             ResultSet rs = ps.executeQuery();
-            object = getBean(rs,clazz,isExtends);
+            object = getBean(rs,clazz,isExtends,isList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -56,7 +56,7 @@ public class CRUDUtil extends BaseDao {
      * @return
      * @throws Exception
      */
-    public static Object getBean(ResultSet rs, Class clazz,boolean isExtends) throws Exception {
+    public static Object getBean(ResultSet rs, Class clazz,boolean isExtends,boolean isList) throws Exception {
         // 获取要封装的javabean声明的属性
         Field[] fields = clazz.getDeclaredFields();
         List<Field> fieldList = new ArrayList<>();
@@ -81,7 +81,7 @@ public class CRUDUtil extends BaseDao {
         // 获取结果集的列数
         int columnCount = metaData.getColumnCount();
         // 当是多行数据时，使用集合封装返回，否则直接返回对象
-        if(rows > 1){
+        if(rows > 1||isList){
             // 实例化一个集合
             List<Object> list = new ArrayList<>();
             // 循环读取结果集中的每行数据

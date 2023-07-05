@@ -43,11 +43,19 @@
                 <td>${drug.mnemonic_code}</td>
                 <td>${drug.creation_date}</td>
                 <td><button class="btn btn-primary" onclick="">编辑</button></td>
-                <td><button class="btn btn-danger" onclick="">删除</button></td>
+                <td><button class="btn btn-danger" onclick="delDrug(${drug.id})">删除</button></td>
 
             </tr>
         </c:forEach>
     </table>
 
 </body>
+<script>
+    function delDrug(id){
+        if (confirm("确定删除？")){
+            location.href = "drug_check?code=2&id="+id;
+        }
+    }
+
+</script>
 </html>

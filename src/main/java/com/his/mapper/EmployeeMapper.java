@@ -25,12 +25,12 @@ public class EmployeeMapper {
         List<Object> list = new ArrayList<Object>();
             list.add(realname);
             list.add(password);
-        EmployeeDto employee = (EmployeeDto) CRUDUtil.CRUD(sql, EmployeeDto.class, list,true);
+        EmployeeDto employee = (EmployeeDto) CRUDUtil.CRUD(sql, EmployeeDto.class, list,true,false);
         return employee;
 
         }
 
-
+        //用于将员工信息注册（添加）到数据库中的
     public static boolean registerEmployee(Employee employee) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -40,7 +40,7 @@ public class EmployeeMapper {
             conn = getConnection();
             String sql = "INSERT INTO employee(realname, password, deptment_id, regist_level_id, scheduling_id) VALUES (?, ?, ?, ?, ?)";
             pstmt = conn.prepareStatement(sql);
-
+            // 为SQL语句设置参数值
             pstmt.setString(1, employee.getRealname());
             pstmt.setString(2, employee.getPassword());
             pstmt.setInt(3, employee.getDeptment_id());
@@ -48,9 +48,9 @@ public class EmployeeMapper {
             pstmt.setInt(5, employee.getScheduling_id());
 
 
-            int rowsAffected = pstmt.executeUpdate();
+            int rowsAffected = pstmt.executeUpdate();// 执行SQL语句并获取受影响的行数
 
-            registrationSuccessful = rowsAffected > 0;
+            registrationSuccessful = rowsAffected > 0;// 如果受影响的行数大于0，则注册成功
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -81,7 +81,7 @@ public class EmployeeMapper {
                 " LEFT JOIN department d ON e.deptment_id = d.id " +
                 " LEFT JOIN regist_level r ON e.regist_level_id = r.id " +
                 " LEFT JOIN scheduling s ON e.scheduling_id = s.id; ";
-        List<EmployeeDto> list = (List<EmployeeDto>)CRUDUtil.CRUD(sql, EmployeeDto.class, null,true);
+        List<EmployeeDto> list = (List<EmployeeDto>)CRUDUtil.CRUD(sql, EmployeeDto.class, null,true,false);
         return list;
 
     }
@@ -110,7 +110,7 @@ public class EmployeeMapper {
         String sql = "select * from employee where id = ? ";
         List<Object>list = new ArrayList<>();
         list.add(id);
-        Employee employee = (Employee) CRUDUtil.CRUD(sql, Employee.class, list,true);
+        Employee employee = (Employee) CRUDUtil.CRUD(sql, Employee.class, list,true,false);
         return employee;
     }
 
@@ -137,6 +137,31 @@ public class EmployeeMapper {
             throwables.printStackTrace();
         }
         return num>0;
+    }
+    public  List<EmployeeDto> likeUserName(String userName) {
+        String sql = "SELECT e.id, e.realname, e.deptment_id, e.regist_level_id, e.scheduling_id, d.dept_name, r.regist_name, s.rule_name " +
+                "FROM employee e " +
+                "LEFT JOIN department d ON e.deptment_id = d.id " +
+                "LEFT JOIN regist_level r ON e.regist_level_id = r.id " +
+                "LEFT JOIN scheduling s ON e.scheduling_id = s.id " +
+                "WHERE realname like '%"+userName+"%'";
+
+        List<Object> list = new ArrayList<Object>();
+        List<EmployeeDto> employee = (List<EmployeeDto>)CRUDUtil.CRUD(sql, EmployeeDto.class, list,true,true);
+        return employee;
+
+    }
+    //查询账号是否存在
+    public  boolean isUserName(String userName) {
+        boolean bl =  false;
+        String sql = "SELECT * FROM employee WHERE realname='" + userName + "'";
+
+
+        List<Object> list = new ArrayList<Object>();
+        List<EmployeeDto> employee = (List<EmployeeDto>)CRUDUtil.CRUD(sql, EmployeeDto.class, list,true,true);
+        return employee.size()>0;
+        //true 表示账号存在，不能注册
+
     }
 
 }
