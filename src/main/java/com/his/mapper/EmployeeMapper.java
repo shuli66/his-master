@@ -138,6 +138,7 @@ public class EmployeeMapper {
         }
         return num>0;
     }
+    //查询
     public  List<EmployeeDto> likeUserName(String userName) {
         String sql = "SELECT e.id, e.realname, e.deptment_id, e.regist_level_id, e.scheduling_id, d.dept_name, r.regist_name, s.rule_name " +
                 "FROM employee e " +

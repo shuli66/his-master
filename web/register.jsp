@@ -188,37 +188,36 @@
 <%--    }--%>
 <%--  });--%>
 
-$("#register_btn").click(function() {
-  var realname = $("#realname").val();
-  var password = $("#password").val();
-  var password2 = $("#password2").val();
-  var deptment_id = $("#deptment_id").val();
-  var register_level_id = $("#register_level_id").val();
-  var scheduling_id = $("#scheduling_id").val();
+   $("#register_btn").click(function() {
+     var realname = $("#realname").val();
+     var password = $("#password").val();
+     var password2 = $("#password2").val();
+     var deptment_id = $("#deptment_id").val();
+     var register_level_id = $("#register_level_id").val();
+     var scheduling_id = $("#scheduling_id").val();
 
-  if (deptment_id === "0") {
-    alert("请选择科室！");
-    return;
-  }
+     if (deptment_id === "0") {
+       alert("请选择科室！");
+       return;
+     }
 
-  $.post("login_check", {
-    code: 2,
-    realname: realname,
-    deptment_id: deptment_id,
-    password: password,
-    password2: password2,
-    register_level_id: register_level_id,
-    scheduling_id: scheduling_id
-  }, function(data) {
-    if (data) {
-      alert("注册成功");
-      window.location.href = "login.jsp";
-    } else {
-      alert("注册失败");
-    }
-  });
-});
-
+     $.post("login_check", {
+       code: 2,
+       realname: realname,
+       deptment_id: deptment_id,
+       password: password,
+       password2: password2,
+       register_level_id: register_level_id,
+       scheduling_id: scheduling_id
+     }, function(data) {
+       if (data === "failure") {
+         alert("注册失败，账号已存在！");
+       } else {
+         alert("注册成功");
+         window.location.href = "login.jsp";
+       }
+     });
+   });
 
  </script>
 

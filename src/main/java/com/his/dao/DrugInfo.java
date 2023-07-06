@@ -1,6 +1,8 @@
 package com.his.dao;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DrugInfo {
@@ -234,4 +236,5 @@ public class DrugInfo {
     public String toString() {
         return "DrugInfo{id = " + id + ", drug_code = " + drug_code + ", drug_name = " + drug_name + ", drug_format = " + drug_format + ", drug_unit = " + drug_unit + ", manufacturer = " + manufacturer + ", drug_dosage = " + drug_dosage + ", drug_type = " + drug_type + ", drug_price = " + drug_price + ", mnemonic_code = " + mnemonic_code + ", creation_date = " + creation_date + "}";
     }
+
 }
