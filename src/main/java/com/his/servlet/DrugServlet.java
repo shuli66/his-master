@@ -11,11 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 
 @WebServlet("/drug_check")
@@ -60,7 +57,8 @@ public class DrugServlet extends HttpServlet {
             // 其他逻辑处理...
             request.getRequestDispatcher("updateDrug.jsp").forward(request, response);
         }
-        if (code.equals("4")) { // 修改操作
+        if (code.equals("4")) { // 修改药品
+            String id = request.getParameter("id");
             // 获取表单参数
             String drugCode = request.getParameter("drug_code");
             String drugName = request.getParameter("drug_name");
@@ -71,9 +69,9 @@ public class DrugServlet extends HttpServlet {
             String drugType = request.getParameter("drug_type");
             String drugPrice = request.getParameter("drug_price");
             String mnemonicCode = request.getParameter("mnemonic_code");
-            String creationDate = request.getParameter("creation_date");
 
             DrugInfo drugInfo = new DrugInfo();
+            drugInfo.setId(Integer.parseInt(id));
             drugInfo.setDrug_code(drugCode);
             drugInfo.setDrug_name(drugName);
             drugInfo.setDrug_format(drugFormat);
@@ -82,21 +80,10 @@ public class DrugServlet extends HttpServlet {
             drugInfo.setDrug_dosage(drugDosage);
             drugInfo.setDrug_type(drugType);
             drugInfo.setMnemonic_code(mnemonicCode);
+            drugInfo.setDrug_price(new BigDecimal(drugPrice));
 
-
-            BigDecimal price = new BigDecimal(drugPrice);
-            drugInfo.setDrug_price(price);
-
-            SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
-            Date date = null;
-            try {
-                date = dateFormat.parse(creationDate);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            drugInfo.setCreation_date(date);
-
-
+            // 设置创建时间为当前时间
+            drugInfo.setCreation_date(new Date());
 
             // 调用updateDrug方法进行更新操作
             if (mapper.updateDrug(drugInfo)) {
@@ -112,6 +99,7 @@ public class DrugServlet extends HttpServlet {
 
 
 
+
         if(code.equals("5")){//条件查询
             String drug_name = request.getParameter("drug_name");
             List<DrugInfo> list = mapper.likeDrugName(drug_name);
@@ -123,7 +111,6 @@ public class DrugServlet extends HttpServlet {
 
 
         if (code.equals("6")) {//添加药品
-
             String drugCode = request.getParameter("drug_code");
             String drugName = request.getParameter("drug_name");
             String drugFormat = request.getParameter("drug_format");
@@ -133,8 +120,6 @@ public class DrugServlet extends HttpServlet {
             String drugType = request.getParameter("drug_type");
             String drugPrice = request.getParameter("drug_price");
             String mnemonicCode = request.getParameter("mnemonic_code");
-            String creationDate = request.getParameter("creation_date");
-
 
             DrugInfo drugInfo = new DrugInfo();
             drugInfo.setDrug_code(drugCode);
@@ -144,21 +129,23 @@ public class DrugServlet extends HttpServlet {
             drugInfo.setManufacturer(manufacturer);
             drugInfo.setDrug_dosage(drugDosage);
             drugInfo.setDrug_type(drugType);
-
             drugInfo.setMnemonic_code(mnemonicCode);
 
             BigDecimal price = new BigDecimal(drugPrice);
             drugInfo.setDrug_price(price);
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = null;
-            try {
-                date = dateFormat.parse(creationDate);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            drugInfo.setCreation_date(date);
+            // 获取当前日期
+            Date currentDate = new Date();
 
+            // 创建 java.sql.Date 对象
+            java.sql.Date creationDate = new java.sql.Date(currentDate.getTime());
+
+            drugInfo.setCreation_date(creationDate);
+
+            if (mapper.isDrugName(drugName)){
+                response.getWriter().write("failure"); // 返回注册失败的标识数据
+                return;
+            }
 
             if (DrugMapper.registerDrug(drugInfo)) {
                 List<DrugInfo> list = mapper.selectDrug();
@@ -167,7 +154,7 @@ public class DrugServlet extends HttpServlet {
             } else {
                 request.getRequestDispatcher("updateDrug.jsp").forward(request, response); // 转发回注册页面
             }
-
         }
+
     }
 }

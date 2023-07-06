@@ -173,20 +173,6 @@
    });
 
 
-<%--  var a = false;--%>
-<%--  $("#btn-eye").click(function() {--%>
-<%--    if (a) {--%>
-<%--      $(this).children().addClass("glyphicon-eye-close");--%>
-<%--      $(this).children().removeClass("glyphicon-eye-open");--%>
-<%--      $("#password").attr("type", "password");--%>
-<%--      a = false;--%>
-<%--    } else {--%>
-<%--      $(this).children().addClass("glyphicon-eye-open");--%>
-<%--      $(this).children().removeClass("glyphicon-eye-close");--%>
-<%--      $("#password").attr("type", "text");--%>
-<%--      a = true;--%>
-<%--    }--%>
-<%--  });--%>
 
    $("#register_btn").click(function() {
      var realname = $("#realname").val();

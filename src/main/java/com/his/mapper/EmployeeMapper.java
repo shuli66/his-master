@@ -157,7 +157,6 @@ public class EmployeeMapper {
         boolean bl =  false;
         String sql = "SELECT * FROM employee WHERE realname='" + userName + "'";
 
-
         List<Object> list = new ArrayList<Object>();
         List<EmployeeDto> employee = (List<EmployeeDto>)CRUDUtil.CRUD(sql, EmployeeDto.class, list,true,true);
         return employee.size()>0;

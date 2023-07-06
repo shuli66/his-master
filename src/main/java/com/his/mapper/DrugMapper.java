@@ -1,5 +1,6 @@
 package com.his.mapper;
 
+import com.his.beam.dto.EmployeeDto;
 import com.his.dao.BaseDao;
 import com.his.dao.DrugInfo;
 import com.his.util.CRUDUtil;
@@ -146,8 +147,15 @@ public class DrugMapper {
             return false;
         }
     }
+    public  boolean isDrugName(String drug_name) {
+        boolean bl =  false;
+        String sql = "SELECT * FROM drug_info WHERE drug_name='" + drug_name + "'";
 
+        List<Object> list = new ArrayList<Object>();
+        List<DrugInfo> drugInfoList = (List<DrugInfo>)CRUDUtil.CRUD(sql, EmployeeDto.class, list,false,true);
+        return drugInfoList.size()>0;
+        //true 表示账号存在，不能注册
 
-
+    }
 
 }
