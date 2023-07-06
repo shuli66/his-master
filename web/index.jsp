@@ -40,7 +40,7 @@
             <ul class="nav" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
-                        <span><img alt="image" class="img-circle" src="html/img/profile_small.jpg" /></span>
+                        <span><img alt="image" class="img-circle" src="html/img/user.jpg" /></span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                <span class="block m-t-xs"><strong class="font-bold">${sessionEmployee.realname}</strong></span>
@@ -69,13 +69,14 @@
                             <a class="J_menuItem" href="login_check?code=3" data-index="0">医生信息</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="html/index_v2.html">科室管理</a>
+                            <a class="J_menuItem" href="login_check?code=9">职称管理</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="html/index_v3.html">职称管理</a>
+                            <a class="J_menuItem" href="html/功能开发.html">科室管理</a>
                         </li>
+
                         <li>
-                            <a class="J_menuItem" href="html/index_v4.html">排班管理</a>
+                            <a class="J_menuItem" href="html/功能开发.html">排班管理</a>
                         </li>
                     </ul>
 
@@ -92,81 +93,81 @@
                             <a class="J_menuItem" href="drug_check?code=1">药品信息</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="html/graph_flot.html">添加药品</a>
+                            <a class="J_menuItem" href="html/功能开发.html">药品分配</a>
                         </li>
 
                     </ul>
                 </li>
 
                 <li>
-                    <a href="html/mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">信箱 </span><span class="label label-warning pull-right">16</span></a>
+                    <a href="html/功能开发.html"><i class="fa fa-envelope"></i> <span class="nav-label">患者管理 </span><span class="label label-warning pull-right">16</span></a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="html/mailbox.html">收件箱</a>
+                        <li><a class="J_menuItem" href="html/功能开发.html">患者信息</a>
                         </li>
-                        <li><a class="J_menuItem" href="html/mail_detail.html">查看邮件</a>
+                        <li><a class="J_menuItem" href="html/功能开发.html">查看邮件</a>
                         </li>
-                        <li><a class="J_menuItem" href="html/mail_compose.html">写信</a>
+                        <li><a class="J_menuItem" href="html/功能开发.html">写信</a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">表单</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="html/form_basic.html">基本表单</a>
+                        <li><a class="J_menuItem" href="html/功能开发.html">基本表单</a>
                         </li>
-                        <li><a class="J_menuItem" href="html/form_validate.html">表单验证</a>
+                        <li><a class="J_menuItem" href="html/功能开发.html">表单验证</a>
                         </li>
-                        <li><a class="J_menuItem" href="html/form_advanced.html">高级插件</a>
+                        <li><a class="J_menuItem" href="html/功能开发.html">高级插件</a>
                         </li>
-                        <li><a class="J_menuItem" href="html/form_wizard.html">表单向导</a>
+                        <li><a class="J_menuItem" href="html/功能开发.html">表单向导</a>
                         </li>
                         <li>
                             <a href="#">文件上传 <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
-                                <li><a class="J_menuItem" href="html/form_webuploader.html">百度WebUploader</a>
+                                <li><a class="J_menuItem" href="html/功能开发.html">百度WebUploader</a>
                                 </li>
-                                <li><a class="J_menuItem" href="html/form_file_upload.html">DropzoneJS</a>
+                                <li><a class="J_menuItem" href="html/功能开发.html">DropzoneJS</a>
                                 </li>
-                                <li><a class="J_menuItem" href="html/form_avatar.html">头像裁剪上传</a>
+                                <li><a class="J_menuItem" href="html/功能开发.html">头像裁剪上传</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
                             <a href="#">编辑器 <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
-                                <li><a class="J_menuItem" href="html/form_editors.html">富文本编辑器</a>
+                                <li><a class="J_menuItem" href="html/功能开发.html">富文本编辑器</a>
                                 </li>
-                                <li><a class="J_menuItem" href="html/form_simditor.html">simditor</a>
+                                <li><a class="J_menuItem" href="html/功能开发.html">simditor</a>
                                 </li>
-                                <li><a class="J_menuItem" href="html/form_markdown.html">MarkDown编辑器</a>
+                                <li><a class="J_menuItem" href="html/功能开发.html">MarkDown编辑器</a>
                                 </li>
                                 <li><a class="J_menuItem" href="html/code_editor.html">代码编辑器</a>
                                 </li>
                             </ul>
                         </li>
-                        <li><a class="J_menuItem" href="html/suggest.html">搜索自动补全</a>
+                        <li><a class="J_menuItem" href="html/功能开发.html">搜索自动补全</a>
                         </li>
-                        <li><a class="J_menuItem" href="html/layerdate.html">日期选择器layerDate</a>
+                        <li><a class="J_menuItem" href="html/功能开发.html">日期选择器layerDate</a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">页面</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="html/contacts.html">联系人</a>
+                        <li><a class="J_menuItem" href="html/功能开发.html">联系人</a>
                         </li>
-                        <li><a class="J_menuItem" href="html/profile.html">个人资料</a>
+                        <li><a class="J_menuItem" href="html/功能开发.html">个人资料</a>
                         </li>
                         <li>
                             <a href="#">项目管理 <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
-                                <li><a class="J_menuItem" href="html/projects.html">项目</a>
+                                <li><a class="J_menuItem" href="html/功能开发.html">项目</a>
                                 </li>
-                                <li><a class="J_menuItem" href="html/project_detail.html">项目详情</a>
+                                <li><a class="J_menuItem" href="html/功能开发.html">项目详情</a>
                                 </li>
                             </ul>
                         </li>
-                        <li><a class="J_menuItem" href="html/teams_board.html">团队管理</a>
+                        <li><a class="J_menuItem" href="html/功能开发.html">团队管理</a>
                         </li>
                         <li><a class="J_menuItem" href="html/social_feed.html">信息流</a>
                         </li>

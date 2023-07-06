@@ -30,7 +30,7 @@
 <div class="main-box">
     <h2 class="text-center">添加药品信息</h2>
 
-    <form class="form-horizontal" id="updateDrugForm" action="drug_check" method="post">
+    <form class="form-horizontal" id="updateDrugForm" action="drug_check" method="post" onsubmit="return submitPost()">
 
         <input type="hidden" name="code" value="6">
         <div class="form-group">
@@ -119,29 +119,25 @@
 </body>
 
 <script>
-    $("#updateDrugBtn").click(function() {
+    function submitPost(){
         var drugName = $("#drug_name").val();
         var drugPrice = $("#drug_price").val();
 
-        if (drugName.trim() === "" || drugPrice.trim() === "") {
+        if (drugName.trim() == "" || drugPrice.trim() == "") {
             alert("请输入药品名称和药品价格");
-            return;
+            return false;
         }
 
         // 发送 POST 请求到后端接口
         $.post("drug_check", {
             code: 6,
-            drug_name: drugName,
-            drug_price: drugPrice
         }, function(data) {
             if (data === "failure") {
                 alert("注册失败，药品已存在！");
-            } else {
-                alert("注册成功");
-                window.location.href = "drugList.jsp";
             }
         });
-    });
+    }
+
 
 
 

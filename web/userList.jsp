@@ -27,9 +27,10 @@
         <td>操作</td>
     </tr>
 
-    <c:forEach items="${list}" var="user">
+    <c:forEach items="${list}" var="user" varStatus="status">
         <tr>
-            <td>${user.id}</td>
+<%--            <td>${user.id}</td>--%>
+            <td>${status.index+1}</td>
             <td>${user.realname}</td>
             <td>${user.dept_name}</td>
             <td>${user.regist_name==null?"---":user.regist_name}</td>

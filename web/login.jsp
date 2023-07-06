@@ -26,7 +26,7 @@
 </head>
 <body>
 <div class="main-box">
-  <h2 class="text-center">医疗管理系统</h2>
+  <h2 class="text-center">HIS医院管理系统</h2>
 
   <form class="form-horizontal" id="login" action="login_check">
     <div class="form-group">

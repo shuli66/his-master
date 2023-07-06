@@ -3,8 +3,10 @@ package com.his.servlet;
 import com.his.beam.Department;
 import com.his.beam.Employee;
 import com.his.beam.dto.EmployeeDto;
+import com.his.beam.dto.Regist_level;
 import com.his.mapper.DeptMapper;
 import com.his.mapper.EmployeeMapper;
+import com.his.mapper.Regist_levelMapper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -184,5 +187,87 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("list", list);
             request.getRequestDispatcher("userList.jsp").forward(request, response);
         }
+
+
+
+        
+        //职称管理
+
+
+
+
+        Regist_levelMapper newmapper = new Regist_levelMapper();
+        if ("9".equals(code)) { // 查询操作
+
+            String registName = request.getParameter("registName");
+            List<Regist_level> newlist;
+            if (registName != null && !registName.isEmpty()) {
+                newlist = newmapper.likeregistName(registName);
+            } else {
+                newlist = newmapper.selectregist();
+            }
+            request.setAttribute("newlist", newlist);
+            request.getRequestDispatcher("registlevel.jsp").forward(request, response);
+        } else if ("10".equals(code)) { // 删除操作
+            String id = request.getParameter("id");
+            if (newmapper.delregist(id)) {
+                List<Regist_level> newlist = newmapper.selectregist();
+                request.setAttribute("newlist", newlist);
+                request.getRequestDispatcher("registlevel.jsp").forward(request, response);
+            }
+        } else if ("11".equals(code)) { // 修改前的查询
+            String id = request.getParameter("id");
+            Regist_level regist = newmapper.updateselectregist(id);
+            request.setAttribute("regist", regist);
+            request.getRequestDispatcher("updateregist.jsp").forward(request, response);
+        } else if ("12".equals(code)) { // 修改或添加操作
+            String id = request.getParameter("id");
+            String regist_code = request.getParameter("regist_code");
+            String regist_name = request.getParameter("regist_name");
+            String regist_fee = request.getParameter("regist_fee");
+            String regist_quota = request.getParameter("regist_quota");
+
+            Regist_level regist = new Regist_level();
+            if (id != null && !id.isEmpty()) {
+                regist.setId(Integer.parseInt(id));
+            }
+            regist.setRegist_code(regist_code);
+            regist.setRegist_name(regist_name);
+
+            BigDecimal feeBigDecimal;
+            if (regist_fee != null && !regist_fee.isEmpty()) {
+                feeBigDecimal = new BigDecimal(regist_fee);
+            } else {
+                feeBigDecimal = BigDecimal.ZERO; // 设置默认值为0
+            }
+            float fee = feeBigDecimal.floatValue();
+            regist.setRegist_fee(fee);
+
+            if (regist_quota != null && !regist_quota.isEmpty()) {
+                regist.setRegist_quota(Integer.parseInt(regist_quota));
+            }
+
+            boolean isSuccess;
+            if (id == null || id.isEmpty()) {
+                // 添加操作
+                isSuccess = newmapper.addRegist(regist);
+            } else {
+                // 修改操作
+                isSuccess = newmapper.updaeregist(regist);
+            }
+
+            if (isSuccess) {
+                List<Regist_level> newlist = newmapper.selectregist();
+                request.setAttribute("newlist", newlist);
+                request.getRequestDispatcher("registlevel.jsp").forward(request, response);
+            } else {
+                request.setAttribute("res", "操作失败，请联系管理员！");
+                request.getRequestDispatcher("updateregist.jsp").forward(request,response);
+            }
+        }
+
+
+
+
     }
 }

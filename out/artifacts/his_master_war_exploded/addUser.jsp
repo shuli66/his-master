@@ -214,10 +214,7 @@
         });
     });
 
-    function goBack() {
-        location.href = "drug_check?code=t"
-        history.back();
-    }
+
 
 </script>
 

@@ -21,7 +21,7 @@
     <button type="button" class="btn btn-primary" onclick="javascript:location.href='addDrug.jsp'">添加</button>
 </form>
     <table class="table" id="drug-table" style="text-align: center">
-        <tr style="color: #568c0a;font-weight: bold;">
+        <tr style="color: #568c0a;font-weight: bold;" >
             <td>序号</td>
             <td>药品编码</td>
             <td>药品名称</td>
@@ -36,11 +36,11 @@
             <td>&nbsp;&nbsp;操作</td>
         </tr>
 
-        <c:forEach items="${list}" var="drug">
+        <c:forEach items="${list}" var="drug" varStatus="status">
             <tr>
 
-
-                <td>${drug.id}</td>
+                <td>${status.index+1}</td>
+<%--                <td>${drug.id}</td>--%>
                 <td>${drug.drug_code}</td>
                 <td>${drug.drug_name}</td>
                 <td>${drug.drug_format}</td>
