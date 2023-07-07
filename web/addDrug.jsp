@@ -56,7 +56,7 @@
 
         <!-- 其他表单字段省略 -->
         <div class="form-group">
-            <label for="drug_unit" class="col-sm-3 control-label">药品单位</label>
+            <label for="drug_unit" class="col-sm-3 control-label">包装单位</label>
             <div class="col-sm-9">
                 <input type="text" id="drug_unit" class="form-control"  name="drug_unit" placeholder="请输入药品单位">
             </div>
@@ -107,12 +107,18 @@
 
         <div class="form-group">
             <div class="text-center col-sm-12">
-                <button id="updateDrugBtn" type="submit" class="btn btn-primary">添加</button>
-            </div>
-            <div class="text-center col-sm-12">
-                <button onclick="goBack()" type="button" class="btn btn-primary">返回</button>
+                <div class="row">
+                    <div class="col-sm-6 text-right" >
+                        <button id="updateDrugBtn" type="submit" class="btn btn-primary">添加</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button onclick="goBack()" type="button" class="btn btn-primary">返回</button>
+                    </div>
+                </div>
             </div>
         </div>
+
+
     </form>
 </div>
 
@@ -140,15 +146,9 @@
 
 
 
-
-
-
-
-
-
-
-
-
+    function goBack() {
+        history.back();
+    }
 
 </script>
 

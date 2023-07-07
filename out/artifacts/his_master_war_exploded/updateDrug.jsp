@@ -107,12 +107,18 @@
 
         <div class="form-group">
             <div class="text-center col-sm-12">
-                <button id="updateDrugBtn" type="submit" class="btn btn-primary">保存</button>
-            </div>
-            <div class="text-center col-sm-12">
-                <button onclick="goBack()" type="button" class="btn btn-primary">返回</button>
+                <div class="row">
+                    <div class="col-sm-6 text-right">
+                        <button id="updateDrugBtn" type="submit" class="btn btn-primary">保存</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button onclick="goBack()" type="button" class="btn btn-primary">返回</button>
+                    </div>
+                </div>
             </div>
         </div>
+
+
     </form>
 </div>
 

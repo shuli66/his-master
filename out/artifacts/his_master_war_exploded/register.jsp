@@ -105,7 +105,7 @@
           <%--          <input id="code" type="text" class="in form-control" placeholder="请输入账户">--%>
           <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 
-          <select  class="form-control" name="register_level_id" id="register_level_id">
+          <select  class="form-control" name="regist_level_id" id="regist_level_id">
             <option value="0">----请选择----</option>
             <option value="1" >专家号</option>
             <option value="2" >普通号</option>
@@ -179,7 +179,7 @@
      var password = $("#password").val();
      var password2 = $("#password2").val();
      var deptment_id = $("#deptment_id").val();
-     var register_level_id = $("#register_level_id").val();
+     var regist_level_id = $("#regist_level_id").val();
      var scheduling_id = $("#scheduling_id").val();
 
      if (deptment_id === "0") {
@@ -193,7 +193,7 @@
        deptment_id: deptment_id,
        password: password,
        password2: password2,
-       register_level_id: register_level_id,
+       regist_level_id: regist_level_id,
        scheduling_id: scheduling_id
      }, function(data) {
        if (data === "failure") {

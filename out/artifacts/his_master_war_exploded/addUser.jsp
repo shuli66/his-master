@@ -143,14 +143,17 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="text-center col-sm-12">
-                <button id="register_btn" type="button" class="btn btn-primary">注册</button>
-
-            </div>
-            <div class="text-center col-sm-12">
-                <button onclick="goBack()" type="button" class="btn btn-primary">返回</button>
+            <div class="row">
+                <div class="col-sm-6 text-right">
+                    <button id="register_btn" type="button" class="btn btn-primary">注册</button>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <button onclick="goBack()" type="button" class="btn btn-primary">返回</button>
+                </div>
             </div>
         </div>
+
+
 
     </form>
 </div>
@@ -214,6 +217,9 @@
         });
     });
 
+    function goBack() {
+        history.back();
+    }
 
 
 </script>

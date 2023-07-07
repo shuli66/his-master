@@ -64,7 +64,7 @@ public class LoginServlet extends HttpServlet {
             String pwd = request.getParameter("password");
             String pwd2 = request.getParameter("password2");
             String deptmentId = request.getParameter("deptment_id");
-            String register_level_id = request.getParameter("regist_level_id");
+            String regist_level_id = request.getParameter("regist_level_id");
             String scheduling_id = request.getParameter("scheduling_id");
 
 
@@ -75,8 +75,8 @@ public class LoginServlet extends HttpServlet {
             if (deptmentId != null && !deptmentId.isEmpty()) {
                 employee.setDeptment_id(Integer.parseInt(deptmentId));
             }
-            if (register_level_id != null && !register_level_id.isEmpty()) {
-                employee.setRegist_level_id(Integer.parseInt(register_level_id));
+            if (regist_level_id != null && !regist_level_id.isEmpty()) {
+                employee.setRegist_level_id(Integer.parseInt(regist_level_id));
             }
             if (scheduling_id != null && !scheduling_id.isEmpty()) {
                 employee.setScheduling_id(Integer.parseInt(scheduling_id));
@@ -265,7 +265,6 @@ public class LoginServlet extends HttpServlet {
                 request.getRequestDispatcher("updateregist.jsp").forward(request,response);
             }
         }
-
 
 
 
